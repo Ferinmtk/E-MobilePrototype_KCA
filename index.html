@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quickmart — Fresh &amp; Easy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="js/lucide.min.js"></script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <main class="device" role="application" aria-label="Quickmart shopping app prototype">
+
+    <div class="statusbar">
+      <span class="statusbar__time">9:41</span>
+      <span class="statusbar__icons">
+        <i data-lucide="signal" class="statusbar__ico"></i>
+        <i data-lucide="wifi" class="statusbar__ico"></i>
+        <i data-lucide="battery-full" class="statusbar__ico"></i>
+      </span>
+    </div>
+
+    <header class="appbar">
+      <button class="appbar__back" data-action="back" aria-label="Go back" hidden>
+        <i data-lucide="chevron-left"></i>
+      </button>
+      <div class="appbar__brand">
+        <span class="appbar__logo">Quick<span>mart</span></span>
+        <span class="appbar__tag">Fresh &amp; Easy</span>
+      </div>
+      <div class="appbar__loyalty">
+        <i data-lucide="star"></i>
+        <span data-bind="points">1,250</span>
+      </div>
+    </header>
+
+    <div class="viewport" id="viewport">
+
+      <section class="view view--active" data-view="home">
+        <div class="searchbar">
+          <i data-lucide="search"></i>
+          <input type="text" placeholder="Search fresh produce, household…" aria-label="Search products" />
+          <i data-lucide="scan-line" class="searchbar__scan"></i>
+        </div>
+
+        <div class="hero">
+          <div class="hero__text">
+            <p class="hero__eyebrow">App exclusive</p>
+            <h2 class="hero__title">15% off fresh produce</h2>
+            <p class="hero__sub">Order before 11am for same-day collection.</p>
+            <span class="hero__code">Code: FRESH15</span>
+          </div>
+          <div class="hero__art"><i data-lucide="shopping-basket"></i></div>
+        </div>
+
+        <nav class="chips" aria-label="Categories">
+          <button class="chip chip--on">All</button>
+          <button class="chip">Fresh Produce</button>
+          <button class="chip">Bakery</button>
+          <button class="chip">Household</button>
+          <button class="chip">Drinks</button>
+        </nav>
+
+        <h3 class="section-title">Popular near you</h3>
+
+        <div class="product-grid" data-bind="product-grid"></div>
+      </section>
+
+      <section class="view" data-view="product">
+        <div class="pdp__media">
+          <div class="pdp__icon" data-bind="pdp-icon"></div>
+        </div>
+
+        <div class="pdp__body">
+          <p class="pdp__cat" data-bind="pdp-cat"></p>
+          <h2 class="pdp__name" data-bind="pdp-name"></h2>
+
+          <p class="stock stock--in" data-bind="pdp-stock">
+            <span class="stock__dot"></span>
+            <span class="stock__label"></span>
+          </p>
+
+          <div class="pdp__pricerow">
+            <span class="pdp__price" data-bind="pdp-price"></span>
+            <span class="pdp__reward"><i data-lucide="star"></i> earns 12 pts</span>
+          </div>
+
+          <p class="pdp__desc">Vine-ripened and sorted daily at your local store. Stock shown is live from branch inventory.</p>
+
+          <div class="qty">
+            <button class="qty__btn" data-action="qty-dec" aria-label="Decrease quantity">
+              <i data-lucide="minus"></i>
+            </button>
+            <span class="qty__value" data-bind="qty">1</span>
+            <button class="qty__btn" data-action="qty-inc" aria-label="Increase quantity">
+              <i data-lucide="plus"></i>
+            </button>
+          </div>
+
+          <h4 class="pdp__label">Choose fulfilment</h4>
+          <div class="segmented" role="tablist">
+            <button class="segmented__opt segmented__opt--on" data-action="fulfil" data-mode="collect">
+              <i data-lucide="store"></i> Click &amp; Collect
+            </button>
+            <button class="segmented__opt" data-action="fulfil" data-mode="deliver">
+              <i data-lucide="truck"></i> Home Delivery
+            </button>
+          </div>
+          <p class="slot" data-bind="slot">
+            <i data-lucide="clock"></i>
+            <span></span>
+          </p>
+        </div>
+
+        <div class="dock">
+          <button class="btn btn--primary" data-action="add-to-cart">
+            <i data-lucide="shopping-cart"></i> Add to basket
+          </button>
+        </div>
+      </section>
+
+      <section class="view" data-view="checkout">
+        <div class="checkout">
+          <h3 class="section-title">Your basket</h3>
+
+          <div class="line">
+            <span class="line__main" data-bind="co-item"></span>
+            <span class="line__val" data-bind="co-item-price"></span>
+          </div>
+          <div class="line">
+            <span class="line__muted">Delivery / pickup</span>
+            <span class="line__muted" data-bind="co-fee">Free pickup</span>
+          </div>
+          <div class="line">
+            <span class="line__muted">Loyalty discount</span>
+            <span class="line__muted line__discount" data-bind="co-discount"></span>
+          </div>
+          <div class="line line--total">
+            <span>Total</span>
+            <span data-bind="co-total"></span>
+          </div>
+
+          <h4 class="pdp__label">Fulfilment</h4>
+          <div class="info-card">
+            <i data-lucide="map-pin"></i>
+            <div>
+              <strong data-bind="co-fulfil">Click &amp; Collect · Ngong Road</strong>
+              <span data-bind="co-slot">Today, 2:00–3:00 pm</span>
+            </div>
+          </div>
+
+          <h4 class="pdp__label">Payment method</h4>
+          <div class="info-card info-card--pay">
+            <span class="mpesa-badge">M-PESA</span>
+            <div>
+              <strong>0712 ••• 678</strong>
+              <span>STK Push · secure, no cash</span>
+            </div>
+            <i data-lucide="check-circle-2" class="info-card__check"></i>
+          </div>
+        </div>
+
+        <div class="dock">
+          <button class="btn btn--pay" data-action="pay">
+            <i data-lucide="smartphone"></i>
+            <span data-bind="pay-label">Pay with M-Pesa</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="view" data-view="browse">
+        <h3 class="section-title">Shop by category</h3>
+        <div class="cat-grid" data-bind="cat-grid"></div>
+
+        <h3 class="section-title">All products</h3>
+        <div class="product-grid" data-bind="browse-grid"></div>
+      </section>
+
+      <section class="view" data-view="rewards">
+        <div class="rewards">
+          <div class="rewards__card">
+            <p class="rewards__label">Quickmart loyalty</p>
+            <p class="rewards__points"><span data-bind="rw-points">1,250</span> <small>points</small></p>
+            <div class="rewards__bar"><span data-bind="rw-fill" style="width:62%"></span></div>
+            <p class="rewards__hint"><span data-bind="rw-togo">750</span> points to Gold tier</p>
+          </div>
+
+          <h3 class="section-title">Redeem your points</h3>
+          <div class="reward-list" data-bind="reward-list"></div>
+
+          <h3 class="section-title">Recent activity</h3>
+          <div class="activity">
+            <div class="activity__row">
+              <span><i data-lucide="shopping-bag"></i> Order #QM-48217</span>
+              <span class="activity__pos">+12 pts</span>
+            </div>
+            <div class="activity__row">
+              <span><i data-lucide="gift"></i> Welcome bonus</span>
+              <span class="activity__pos">+250 pts</span>
+            </div>
+            <div class="activity__row">
+              <span><i data-lucide="tag"></i> Redeemed: KSh 50 off</span>
+              <span class="activity__neg">−500 pts</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <nav class="tabbar" aria-label="Main navigation">
+      <button class="tab tab--on" data-nav="home">
+        <i data-lucide="home"></i><span>Home</span>
+      </button>
+      <button class="tab" data-nav="browse">
+        <i data-lucide="layout-grid"></i><span>Browse</span>
+      </button>
+      <button class="tab" data-nav="checkout">
+        <i data-lucide="shopping-cart"></i><span>Basket</span>
+        <em class="tab__badge" data-bind="cart-badge" hidden>1</em>
+      </button>
+      <button class="tab" data-nav="rewards">
+        <i data-lucide="star"></i><span>Rewards</span>
+      </button>
+    </nav>
+
+    <div class="sheet-overlay" data-bind="overlay" hidden>
+      <div class="sheet" role="dialog" aria-modal="true" aria-label="M-Pesa payment">
+        <span class="sheet__grip"></span>
+        <span class="mpesa-badge mpesa-badge--lg">M-PESA</span>
+
+        <div data-bind="pay-confirm">
+          <h3 class="sheet__title">Confirm payment</h3>
+          <div class="stk">
+            <strong>STK Push sent to 0712 ••• 678</strong>
+            A prompt has appeared on your phone. Enter your M-Pesa PIN to pay
+            <strong data-bind="stk-amount"></strong> to Quickmart.
+          </div>
+          <div class="pin" data-bind="pin">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <button class="btn btn--primary" data-action="enter-pin">
+            <i data-lucide="lock"></i> Enter PIN &amp; pay
+          </button>
+          <p class="sheet__note">
+            <i data-lucide="shield-check"></i> Secure · no cash handled · auto-receipt
+          </p>
+        </div>
+
+        <div class="sheet__spinner" data-bind="pay-spinner" hidden></div>
+
+        <div data-bind="pay-done" hidden>
+          <div class="sheet__check"><i data-lucide="check"></i></div>
+          <h3 class="sheet__title">Payment received</h3>
+          <p class="sheet__success">
+            Order <strong>#QM-48217</strong> confirmed. Inventory updated in real time.
+            Ready for pickup today, 2–3 pm at Ngong Road.
+          </p>
+          <p class="sheet__pts"><i data-lucide="star"></i> +12 loyalty points earned</p>
+          <button class="btn btn--primary" data-action="finish">Done</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
